@@ -11,6 +11,45 @@ let generateDB = () => {
 
 }
 
+let getListado = () =>{
+	try {
+		hw = require(__dirname+'/dbFile/fileDB.json');
+		return hw;
+	} catch (error) {
+		hw = [];
+		return hw;
+	}
+}
+
+let actualizarHw = (descripcion, estado) =>{
+
+	getDataBD();
+
+	let index = hw.findIndex(tarea=>tarea.desc === descripcion);
+
+	if(index>=0){
+		hw[index].completado = estado;
+		generateDB();
+		return true;
+	}else{
+		return false;
+	}
+
+}
+
+let borrarHw = (descripcion) =>{
+	getDataBD();
+	let index = hw.filter(hw => { return hw.desc !== descripcion } );
+
+	if(index.length !== hw.length){
+		hw = index;
+		generateDB();
+		return true;
+	}else{
+		return false;
+	}
+}
+
 let getDataBD = () =>{
 	try {
 		hw = require(__dirname+'/dbFile/fileDB.json');
@@ -32,7 +71,10 @@ let createHw = (desc) => {
 }
 
 module.exports = {
-	createHw
+	createHw,
+	getListado,
+	actualizarHw,
+	borrarHw
 }
 
 

@@ -1,10 +1,4 @@
 const argv = require('yargs')
-            .command('Listar','Listar tareas', {
-                descripcion:{
-                    alias:'d',
-                    demand:true
-                }
-            })
             .command('Crear','Crear nueva tarea',{
                 descripcion:{
                     alias:'d',
@@ -19,6 +13,12 @@ const argv = require('yargs')
                 completado:{
                     alias:'c',
                     default:true
+                }
+            })
+            .command('Borrar','Borrar tarea',{
+                descripcion:{
+                    alias:'d',
+                    demand:true
                 }
             })
             .help()
